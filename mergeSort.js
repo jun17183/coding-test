@@ -8,13 +8,13 @@
 // 하지만 이 경우 나눌 때마다 메모리 할당과 해제가 반복되기에 오버헤드가 약간 더 클 수 있다.
 function mergeSort(arr) {
     function merge(arr, aux, left, mid, right) {
-        for (let k = left; k <= right; k++) {
-            aux[k] = arr[k];
+        for (let i = left; i <= right; i++) {
+            aux[i] = arr[i];
         }
 
         let l = left;
         let r = mid + 1;
-        k = left;
+        let k = left;
 
         while (l <= mid && r <= right) {
             if (aux[l] <= aux[r]) {

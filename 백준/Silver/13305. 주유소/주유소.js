@@ -1,15 +1,18 @@
 let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-let answer = 0;
-const distance = input[1].split(" ");
-const cost = input[2].split(" ");
+let n = Number(input[0]);
+let dist = input[1].split(' ').map(Number);
+let cost = input[2].split(' ').map(Number);
 
-for (let i = 0; i < distance.length; i++) {
-    if (i === 0 || cost[i] <= cost[i - 1]) {
-        answer += Number(distance[i]) * Number(cost[i]);
-    } else {
-        answer += Number(distance[i]) * Number(cost[i - 1]);
-    }
+let minCost = cost[0];
+for (let i = 0; i < n; i++) {
+    minCost = Math.min(minCost, cost[i]);
+    cost[i] = minCost;
 }
-console.log(answer);
+
+let answer = BigInt(0);
+for (let i = 0; i < n - 1; i++) {
+    answer += BigInt(dist[i]) * BigInt(cost[i]);
+}
+console.log(String(answer));

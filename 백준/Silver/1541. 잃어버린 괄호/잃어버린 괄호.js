@@ -2,16 +2,16 @@ let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 let answer = 0;
-input[0].split("-").forEach((item, idx) => {
-    let temp = item.split("+");
+let temp = input[0].split("-");
 
-    temp.forEach(num => {
-        if (idx) {
-            answer -= Number(num);
+for (let i = 0; i < temp.length; i++) {
+    temp[i].split("+").forEach(num => {
+        if (i === 0) {
+            answer += +num;
         } else {
-            answer += Number(num);
+            answer -= +num;
         }
     });
-});
+}
 
 console.log(answer);

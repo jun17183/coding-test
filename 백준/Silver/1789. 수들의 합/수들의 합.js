@@ -1,16 +1,14 @@
 let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-function solution(input) {
-    let num = 0;
-    let sum = 0;
+input = Number(input[0]);
 
-    while (sum <= Number(input)) {
-        num++;
-        sum += num;
-    }
+let sum = 0;
+let i = 0;
 
-    console.log(num - 1);
+while (sum <= input) {
+    i++;
+    sum += i;    
 }
 
-solution(input);
+console.log(i - 1);

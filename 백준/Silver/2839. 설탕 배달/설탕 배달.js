@@ -1,25 +1,15 @@
 let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+let input = +(fs.readFileSync("/dev/stdin").toString().trim().split("\n")[0]);
 
-function solution(input = Number(input)) {
-    let answer = 0;
-    while (true) {
-        if (input % 5 === 0) {
-            answer += input / 5;
-            break;
-        } else {
-            if (input === 0) {
-                break;
-            }
-            if (input < 0) {
-                answer = -1;
-                break;
-            }
-            input -= 3;
-            answer++;
-        }
+let answer = -1;
+
+for (let i = parseInt(input / 5); i >= 0; i--) {
+    let l = input - i * 5;
+    if (l % 3 === 0) {
+        answer = l / 3;
+        answer += i;
+        break;
     }
-    console.log(answer);
 }
 
-solution(input);
+console.log(answer);
